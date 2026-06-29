@@ -18,10 +18,10 @@ client.on("ready", () => {
 });
 
 // IDE ÍRD BE A CSATORNA ID-T
-const WELCOME_CHANNEL_ID = "IDE_IRD_A_CSATORNA_IDT";
+const WELCOME_CHANNEL_ID = "1520774673212903424";
 
 // IDE ÍRD BE AZ IMGUR LINKET
-const IMGUR_LINK = "https://i.imgur.com/valami.png";
+const IMGUR_LINK = "https://i.imgur.com/ddZEOQ8.png";
 
 client.on("guildMemberAdd", (member) => {
     const channel = member.guild.channels.cache.get(WELCOME_CHANNEL_ID);

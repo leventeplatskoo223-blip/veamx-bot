@@ -97,7 +97,6 @@ client.on("guildMemberAdd", async (member) => {
     });
 });
 
-// Interaction handler
 client.on("interactionCreate", async (interaction) => {
     if (!interaction.isButton()) return;
 
@@ -111,10 +110,8 @@ client.on("interactionCreate", async (interaction) => {
     if (interaction.customId === "ticket_open") {
         const guild = interaction.guild;
 
-        // Ticket szoba neve
         const channelName = `ticket-${interaction.user.username}`;
 
-        // Létrehozás
         const ticketChannel = await guild.channels.create({
             name: channelName,
             type: 0,
@@ -142,7 +139,6 @@ client.on("interactionCreate", async (interaction) => {
             ]
         });
 
-        // Ticket panel a szobában
         const embed = new EmbedBuilder()
             .setTitle("📩 Új Ticket Nyílt")
             .setDescription(`Szia <@${interaction.user.id}>! Miben segíthetünk?`)
@@ -170,19 +166,14 @@ client.on("interactionCreate", async (interaction) => {
         await interaction.reply({ content: "Ticket sikeresen megnyitva! 📩", ephemeral: true });
     }
 
-client.on("interactionCreate", async (interaction) => {
-    if (!interaction.isButton()) return;
-
     // TICKET BEZÁRÁS
     if (interaction.customId === "ticket_close") {
         try {
-            // PM üzenet a felhasználónak
             await interaction.user.send({
                 content: "A ticketed sikeresen lezárva! ✔️",
                 files: ["https://i.imgur.com/wFeneqy.jpeg"]
             });
 
-            // Ticket szoba törlése AZONNAL
             await interaction.channel.delete();
         } catch (err) {
             console.error("Ticket bezárási hiba:", err);
@@ -196,6 +187,4 @@ client.on("interactionCreate", async (interaction) => {
             ephemeral: true
         });
     }
-}); // ← EZ A SOR NÁLAD HIÁNYZOTT!!!
-
-client.login(process.env.TOKEN); // ← EZ legyen a legvégén
+});

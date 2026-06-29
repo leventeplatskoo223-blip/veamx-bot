@@ -97,6 +97,7 @@ client.on("guildMemberAdd", async (member) => {
     });
 });
 
+// 🔥 EGYETLEN interactionCreate BLOKK – minden itt van
 client.on("interactionCreate", async (interaction) => {
     if (!interaction.isButton()) return;
 
@@ -188,3 +189,5 @@ client.on("interactionCreate", async (interaction) => {
         });
     }
 });
+
+client.login(process.env.TOKEN);

@@ -196,6 +196,6 @@ client.on("interactionCreate", async (interaction) => {
             ephemeral: true
         });
     }
-}); // ← EZ A SOR NÁLAD HIÁNYZIK!!!
+}); // ← EZ A SOR NÁLAD HIÁNYZOTT!!!
 
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN); // ← EZ legyen a legvégén

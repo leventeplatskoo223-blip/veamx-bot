@@ -170,26 +170,32 @@ client.on("interactionCreate", async (interaction) => {
         await interaction.reply({ content: "Ticket sikeresen megnyitva! 📩", ephemeral: true });
     }
 
-// TICKET BEZÁRÁS
-if (interaction.customId === "ticket_close") {
-    try {
-        // PM üzenet a felhasználónak
-        await interaction.user.send({
-            content: "A ticketed sikeresen lezárva! ✔️",
-            files: ["https://i.imgur.com/wFeneqy.jpeg"]
-        });
+client.on("interactionCreate", async (interaction) => {
+    if (!interaction.isButton()) return;
 
-        // Ticket szoba törlése AZONNAL
-        await interaction.channel.delete();
-    } catch (err) {
-        console.error("Ticket bezárási hiba:", err);
+    // TICKET BEZÁRÁS
+    if (interaction.customId === "ticket_close") {
+        try {
+            // PM üzenet a felhasználónak
+            await interaction.user.send({
+                content: "A ticketed sikeresen lezárva! ✔️",
+                files: ["https://i.imgur.com/wFeneqy.jpeg"]
+            });
+
+            // Ticket szoba törlése AZONNAL
+            await interaction.channel.delete();
+        } catch (err) {
+            console.error("Ticket bezárási hiba:", err);
+        }
     }
-}
 
-// TICKET INTÉZÉSE
-if (interaction.customId === "ticket_handle") {
-    await interaction.reply({ 
-        content: "A ticketet intézzük! ✔️", 
-        ephemeral: true 
-    });
-}
+    // TICKET INTÉZÉSE
+    if (interaction.customId === "ticket_handle") {
+        await interaction.reply({
+            content: "A ticketet intézzük! ✔️",
+            ephemeral: true
+        });
+    }
+}); // ← EZ A SOR NÁLAD HIÁNYZIK!!!
+
+client.login(process.env.TOKEN);
